@@ -2,7 +2,7 @@
 <html>  
     <head>  
         <title>Signup</title>
-        <link rel="stylesheet" type="text/css" href="form.css" />
+        <!--<link rel="stylesheet" type="text/css" href="/static/form.css" /> -->
         <style>
             
             /*.row {
@@ -20,17 +20,24 @@
         color: red;
     }
 
+    #error {
+        color: red;
+        font-size: .5rem;
+        font-weight: bold;
+    }
+
         </style>
     </head>
     <body>
         <h2>Sign up, it's super fun!!</h2>
-        <form action="/confirm" method="post"> <!--name="signup">-->
+        <!-- fieldset???? -->
+        <form action="/confirm" method="post" name="signup">
         
-            <div><label>Username</label><input type="text" name="username" required></div>
+            <div><label>Username</label><input type="text" name="username" required></div><span id="error">{{ error }}</span>
             <div><label>Password</label><input type="password" name="passw" required></div>
             <div><label>Confirm Password</label><input type="password" name="conf_pass" required></div>
             
-            <label>Email address</label><input type="text">
+            <label>Email address</label><input type="text" name="email">
             <span id="opt">(optional)</span>
             
             <p><input type="submit" value="Submit to it!">
