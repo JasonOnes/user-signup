@@ -2,42 +2,21 @@
 <html>  
     <head>  
         <title>Signup</title>
-        <!--<link rel="stylesheet" type="text/css" href="/static/form.css" /> -->
-        <style>
-            
-            /*.row {
-    width: 100%;
-    padding: 12px 20px;
-    }*/
-    label {
-    display:inline-block;
-    margin-right: 2rem;
-    margin-bottom: 1rem;
-    width: 5rem;
-    }
-    #opt  {
-        font-size: .5rem;
-        color: red;
-    }
-
-    #error {
-        color: red;
-        font-size: .5rem;
-        font-weight: bold;
-    }
-
-        </style>
+        <link rel="stylesheet" type="text/css" href="/static/form.css" /> 
+    
     </head>
     <body>
         <h2>Sign up, it's super fun!!</h2>
         <!-- fieldset???? -->
         <form action="/confirm" method="post" name="signup">
         
-            <div><label>Username</label><input type="text" name="username" required></div><span id="error">{{ error }}</span>
-            <div><label>Password</label><input type="password" name="passw" required></div>
-            <div><label>Confirm Password</label><input type="password" name="conf_pass" required></div>
-            
-            <label>Email address</label><input type="text" name="email">
+            <div><label>Username</label><input type="text" name="username" value="{{ username }}" required>
+                <span class="error">{{ error1 }}</span></div>
+            <div><label>Password</label><input type="password" name="passw" required>
+                <span class="error">{{ error2 }}</span></div>
+            <div><label>Confirm Password</label><input type="password" name="conf_pass" required>
+                <span class="error">{{ error3 }}</span></div>
+            <label>Email address</label><input type="text" name="email" value="{{ email }}"><span class="error">{{ error4 }}</span>
             <span id="opt">(optional)</span>
             
             <p><input type="submit" value="Submit to it!">
