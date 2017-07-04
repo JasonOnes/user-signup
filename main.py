@@ -1,6 +1,7 @@
 """ simple sign-up page with password confirmation and email with feedback """
-
+import re
 from flask import Flask, render_template, request
+
 #import cgi
 
 
@@ -28,9 +29,9 @@ def confirm():
     #con_psw = request.form['conf_pass']
     con_psw = request.form.get('conf_pass')
     email = request.form['email']
-    #if request.method == 'POST':
     if len(name) not in range(3, 21):
         error = "Username must be at least 3 characters and no more than 20."
+        #post_email = request.form.post('email')
         return render_template("index.html", email=email, error1=error)
     elif " " in name:
         error = "spaces not allowed"
@@ -45,14 +46,19 @@ def confirm():
         error = "Passwords didn't match!!"
         return render_template("index.html", username=name, email=email, error3=error)
     elif email:
+        match_pat = re.compile(r"[^@]+@[^@]+\.[^@]+") # tried and tried to get range W/i regex
+        # using ^{3,21}$ but no dice
+        match = match_pat.match(email)
         error = "Not a valid email address!"
         msg = render_template("index.html", username=name, error4=error)
-        if "@" and "." not in email:
+        if not match or len(email) not in range(3, 21):
             return msg
-        elif " " in email:
-            return msg
-        elif email not in range(3, 21):
-            return msg
+        # if "@" and "." not in email:
+        #     return msg
+        # elif " " in email:
+        #     return msg
+        # elif len(email) not in range(3, 21):
+        #     return msg
         else:
             return render_template("confirm.html", name=name)
     else:

@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>  
-    <body>
-        <h1>{{ name }} you made it!</h1>
-    </body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+        <h1>Welcome, {{ name|title }} you made it!</h1>
+{% endblock %}
